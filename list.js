@@ -10,12 +10,26 @@ export default function List(props) {
       </header>
       <div className="List-cards">
         {props.cards.map((card) => (
-          <Card key={card.id} title={card.title} content={card.content} />
+          <Card
+            key={card.id}
+            id={card.id}
+            title={card.title}
+            content={card.content}
+            onDeleteItem={props.onDeleteItem}
+          />
         ))}
-        <button type="button" className="List-add-button">
+        <button
+          onClick={() => props.onRandomItem(props.id)}
+          type="button"
+          className="List-add-button"
+        >
           + Add Random Card
         </button>
       </div>
     </section>
   );
 }
+
+List.defaultProps = {
+  onRandomItem: () => {},
+};
